@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Press Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        color: white; /* Changing text color to white for better visibility */
+        background-color: black; /* Setting default background to black */
+        position: relative;
+    }
+    #points {
+        font-size: 24px;
+        margin-top: 50px;
+    }
+    #timer {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    #winMessage {
+        font-size: 24px;
+        color: yellow;
+    }
+</style>
+</head>
+<body>
+<h1>Key Press Game</h1>
+<p>Press 'W' key to gain 5 points and 'X' key to gain 10 points.</p>
+<p>Current Points: <span id="points">0</span></p>
+<p id="timer"></p>
+<p id="winMessage"></p>
+
+<audio id="knopSound">
+  <source src="knop.mp3" type="audio/mpeg">
+  Your browser doesn't support the audio element.
+</audio>
+<audio id="500Sound">
+  <source src="500.mp3" type="audio/mpeg">
+  Your browser doesn't support the audio element.
+</audio>
+
+<script>
+    let points = 0;
+    let hueRotation = 0;
+    let timerInterval;
+    let secondsLeft = 10;
+    let played500Sound = false; // Flag to track if 500.mp3 has been played
+    const pointsDisplay = document.getElementById('points');
+    const timerDisplay = document.getElementById('timer');
+    const winMessage = document.getElementById('winMessage');
+    const knopSound = document.getElementById('knopSound');
+    const fiveHundredSound = document.getElementById('500Sound');
+
+    function updateHueRotation() {
+        document.body.style.filter = `hue-rotate(${hueRotation}deg)`;
+    }
+
+    function updateTimer() {
+        timerDisplay.textContent = `Time left: ${secondsLeft} seconds`;
+    }
+
+    function updatePointsDisplay() {
+        pointsDisplay.textContent = points;
+    }
+
+    function hideAllElements() {
+        document.querySelectorAll('h1, p, #points, #timer, #winMessage').forEach(function(element) {
+            element.style.display = 'none';
+        });
+    }
+
+    function changeBackgroundImageAndPlaySound(imageUrl, sound) {
+        document.body.style.backgroundImage = `url(${imageUrl})`;
+        document.body.style.backgroundSize = 'cover';
+        if (!played500Sound) { // Play sound only if not played already
+            sound.play();
+            played500Sound = true;
+        }
+        hideAllElements();
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function() {
+            secondsLeft--;
+            updateTimer();
+            if (points >= 1000) {
+                clearInterval(timerInterval);
+                hideAllElements();
+                winMessage.textContent = "Congratulations! You won!";
+            } else if (secondsLeft <= 0) {
+                clearInterval(timerInterval);
+                hideAllElements();
+                winMessage.textContent = "Time's up! You lose!";
+            }
+        }, 1000);
+    }
+
+    document.addEventListener('keydown', function(event) {
+        hueRotation += 3;
+        updateHueRotation();
+
+        if (event.key === 'w' || event.key === 'W') {
+            points += 5;
+        } else if (event.key === 'x' || event.key === 'X') {
+            points += 10;
+        }
+        updatePointsDisplay();
+
+        if (points >= 500) {
+            changeBackgroundImageAndPlaySound("500.jpg", fiveHundredSound);
+        }
+
+        if (!timerInterval) {
+            startTimer();
+        }
+    });
+
+    updateTimer(); // Initial timer display
+</script>
+</body>
+</html>
