@@ -24,6 +24,16 @@
         font-size: 24px;
         color: yellow;
     }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -41,6 +51,9 @@
   <source src="500.mp3" type="audio/mpeg">
   Your browser doesn't support the audio element.
 </audio>
+
+<button id="wButton" class="button">Press 'W'</button>
+<button id="xButton" class="button">Press 'X'</button>
 
 <script>
     let points = 0;
@@ -98,13 +111,22 @@
         }, 1000);
     }
 
-    document.addEventListener('keydown', function(event) {
+    // Button event listeners
+    document.getElementById('wButton').addEventListener('click', function() {
+        simulateKeyPress('w');
+    });
+
+    document.getElementById('xButton').addEventListener('click', function() {
+        simulateKeyPress('x');
+    });
+
+    function simulateKeyPress(key) {
         hueRotation += 3;
         updateHueRotation();
 
-        if (event.key === 'w' || event.key === 'W') {
+        if (key === 'w') {
             points += 5;
-        } else if (event.key === 'x' || event.key === 'X') {
+        } else if (key === 'x') {
             points += 10;
         }
         updatePointsDisplay();
@@ -116,7 +138,7 @@
         if (!timerInterval) {
             startTimer();
         }
-    });
+    }
 
     updateTimer(); // Initial timer display
 </script>
