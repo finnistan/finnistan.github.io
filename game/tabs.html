@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Image in New Tab</title>
+</head>
+<body>
+  <button onclick="openImages()">Open image 5 times in new tab</button>
+  <script>
+    function openImages() {
+      for (let i = 0; i < 5; i++) {
+        window.open('500.jpg', '_blank');
+      }
+    }
+  </script>
+</body>
+</html>
