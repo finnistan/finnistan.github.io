@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do Not Press Button</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #warningText {
+    display: none;
+    font-size: 2em;
+    color: red;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>Do Not Press Button</h1>
+  <button id="pressButton">Do not press</button>
+  <div id="warningText">FAMILY DIPPED IN BOILING OIL</div>
+
+<script>
+  document.getElementById("pressButton").addEventListener("click", function() {
+    document.getElementById("warningText").style.display = "block";
+  });
+</script>
+</body>
+</html>
