@@ -66,6 +66,8 @@
     const winMessage = document.getElementById('winMessage');
     const knopSound = document.getElementById('knopSound');
     const fiveHundredSound = document.getElementById('500Sound');
+    const wButton = document.getElementById('wButton');
+    const xButton = document.getElementById('xButton');
 
     function updateHueRotation() {
         document.body.style.filter = `hue-rotate(${hueRotation}deg)`;
@@ -91,6 +93,9 @@
         if (!played500Sound) { // Play sound only if not played already
             sound.play();
             played500Sound = true;
+            // Hide buttons when points reach 500
+            wButton.style.display = 'none';
+            xButton.style.display = 'none';
         }
         hideAllElements();
     }
