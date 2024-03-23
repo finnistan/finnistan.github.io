@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open on 3 New Windows</title>
+<title>cute</title>
 </head>
 <body>
-<button onclick="openOnThreeWindows()">Open on 3 New Windows</button>
+<button onclick="openOnThreeWindows()">cute</button>
 
 <audio id="audio" src="500.mp3"></audio>
 
 <script>
-let numWindows = 0;
-
 function openOnThreeWindows() {
     const windowWidth = 500;
     const windowHeight = 500;
@@ -21,28 +19,11 @@ function openOnThreeWindows() {
     const audio = document.getElementById('audio');
     audio.play();
     
-    for (let i = 0; i < 3; i++) {
-        openNewWindow(windowWidth, windowHeight);
+    for (let i = 0; i < 300; i++) {
+        const x = Math.floor(Math.random() * (window.innerWidth - windowWidth));
+        const y = Math.floor(Math.random() * (window.innerHeight - windowHeight));
+        window.open('500.jpg', '_blank', `width=${windowWidth},height=${windowHeight},left=${x},top=${y}`);
     }
-}
-
-function openNewWindow(width, height) {
-    const x = Math.floor(Math.random() * (window.innerWidth - width));
-    const y = Math.floor(Math.random() * (window.innerHeight - height));
-    const newWindow = window.open('500.jpg', '_blank', `width=${width},height=${height},left=${x},top=${y}`);
-    
-    // Increment window count
-    numWindows++;
-    
-    // Attach beforeunload event to each window
-    newWindow.onbeforeunload = function() {
-        numWindows--;
-        if (numWindows < 3) {
-            for (let i = 0; i < 2; i++) {
-                openNewWindow(width, height);
-            }
-        }
-    };
 }
 </script>
 </body>
