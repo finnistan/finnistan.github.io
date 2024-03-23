@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #resultImage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Number Guessing Game</h1>
+  <p>Guess a number between 1 and 100:</p>
+  <input type="number" id="guess" min="1" max="100">
+  <button onclick="checkGuess()">Check</button>
+  <p id="message"></p>
+  <img src="" id="resultImage" style="display: none;">
+  
+  <script>
+    // Generate a random number between 1 and 100
+    const randomNumber = Math.floor(Math.random() * 100000000000000) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guess').value);
+      const messageElement = document.getElementById('message');
+      const resultImage = document.getElementById('resultImage');
+      const audio = new Audio('womp.mp3'); // Load the audio file
+      
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        messageElement.textContent = 'Please enter a valid number between 1 and 100.';
+      } else if (guess === randomNumber) {
+        messageElement.textContent = 'Congratulations! You guessed the correct number.';
+        resultImage.src = ''; // Clear image if it was previously displayed
+        resultImage.style.display = 'none'; // Hide image
+      } else if (guess < randomNumber) {
+        messageElement.textContent = 'Too low. Try again!';
+        resultImage.src = 'wrong.png';
+        resultImage.style.display = 'inline-block';
+        audio.play(); // Play the audio
+      } else {
+        messageElement.textContent = 'Too high. Try again!';
+        resultImage.src = 'wrong.png';
+        resultImage.style.display = 'inline-block';
+        audio.play(); // Play the audio
+      }
+    }
+  </script>
+</body>
+</html>
