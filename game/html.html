@@ -3,21 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open on 3 New Windows</title>
+<title>Jaxon</title>
+<style>
+    body {
+        overflow: hidden; /* Prevent scrollbars */
+    }
+</style>
 </head>
 <body>
-<button onclick="openOnThreeWindows()">Open on 3 New Windows</button>
+<button onclick="openOnThreeWindows()">Jaxon Jumpscare</button>
+
+<audio id="audio" src="500.mp3"></audio>
 
 <script>
+let windows = [];
+
 function openOnThreeWindows() {
     const windowWidth = 500;
     const windowHeight = 500;
+
+    // Play the sound
+    const audio = document.getElementById('audio');
+    audio.play();
     
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 3; i++) {
         const x = Math.floor(Math.random() * (window.innerWidth - windowWidth));
         const y = Math.floor(Math.random() * (window.innerHeight - windowHeight));
-        window.open('500.png', '_blank', `width=${windowWidth},height=${windowHeight},left=${x},top=${y}`);
+        const newWindow = window.open('500.png', '_blank', `width=${windowWidth},height=${windowHeight},left=${x},top=${y}`);
+        windows.push({ window: newWindow, dx: 2, dy: 2 });
     }
+
+    // Start animation loop
+    animateWindows();
+}
+
+function animateWindows() {
+    const speed = 5; // Change this for different speeds
+    windows.forEach(tab => {
+        const newLeft = tab.window.screenX + tab.dx;
+        const newTop = tab.window.screenY + tab.dy;
+        if (newLeft < 0 || newLeft + tab.window.outerWidth > window.innerWidth) {
+            tab.dx *= -1;
+        }
+        if (newTop < 0 || newTop + tab.window.outerHeight > window.innerHeight) {
+            tab.dy *= -1;
+        }
+        tab.window.moveBy(tab.dx, tab.dy);
+    });
+    setTimeout(animateWindows, speed);
 }
 </script>
 </body>
