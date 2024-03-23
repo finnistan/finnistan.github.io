@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open on 3 New Windows</title>
+</head>
+<body>
+<button onclick="openOnThreeWindows()">Open on 3 New Windows</button>
+
+<script>
+function openOnThreeWindows() {
+    const windowWidth = 500;
+    const windowHeight = 500;
+    
+    for (let i = 0; i < 300; i++) {
+        const x = Math.floor(Math.random() * (window.innerWidth - windowWidth));
+        const y = Math.floor(Math.random() * (window.innerHeight - windowHeight));
+        window.open('500.jpg', '_blank', `width=${windowWidth},height=${windowHeight},left=${x},top=${y}`);
+    }
+}
+</script>
+</body>
+</html>
