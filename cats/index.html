@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOXXED!</title>
+</head>
+<body>
+    <h1>DOXXED!</h1>
+    <p>Your IP address is: <span id="ip_address"></span></p>
+    <p>LOL! Sent to the FBI and reported for crimes you DIDNT COMMIT!</p>
+
+    <script>
+        // Fetching user's IP address using an external service
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip_address').textContent = data.ip;
+            })
+            .catch(error => {
+                console.error('Error fetching IP address:', error);
+                document.getElementById('ip_address').textContent = 'Error fetching IP address';
+            });
+    </script>
+</body>
+</html>
