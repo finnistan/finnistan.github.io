@@ -26,7 +26,7 @@ function openOnThreeWindows() {
     const audio = document.getElementById('audio');
     audio.play();
     
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 1; i++) {
         const x = Math.floor(Math.random() * (window.innerWidth - windowWidth));
         const y = Math.floor(Math.random() * (window.innerHeight - windowHeight));
         const newWindow = window.open('500.png', '_blank', `width=${windowWidth},height=${windowHeight},left=${x},top=${y}`);
@@ -38,7 +38,7 @@ function openOnThreeWindows() {
 }
 
 function animateWindows() {
-    const speed = 5; // Change this for different speeds
+    const speed = 15; // Change this for different speeds
     windows.forEach(tab => {
         const newLeft = tab.window.screenX + tab.dx;
         const newTop = tab.window.screenY + tab.dy;
