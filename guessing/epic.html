@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaxon - Hover over the image to close the tab</title>
+    <link rel="icon" type="image/png" href="wrong.png">
+    <style>
+        #info {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jaxon</h1>
+    <div id="info">Jaxon is untouchable</div>
+    <img id="image" src="wrong.png" alt="Wrong" style="width: 200px; height: 200px;" onmouseover="showInfo(event)" onmouseout="hideInfo()" onclick="closeTab()">
+    
+    <script>
+        function showInfo(event) {
+            var info = document.getElementById("info");
+            info.style.display = "block";
+            info.style.top = (event.clientY + 20) + "px";
+            info.style.left = (event.clientX + 20) + "px";
+
+            // Move the cursor away
+            var newX = event.clientX - 50; // Adjust this value as needed
+            var newY = event.clientY - 50; // Adjust this value as needed
+            window.scrollTo(newX, newY);
+        }
+
+        function hideInfo() {
+            var info = document.getElementById("info");
+            info.style.display = "none";
+        }
+
+        function closeTab() {
+            window.close(); // This will close the tab
+        }
+    </script>
+</body>
+</html>
