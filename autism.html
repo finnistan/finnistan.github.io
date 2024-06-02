@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTISM TEST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .answer {
+            margin-bottom: 10px;
+        }
+        #submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #submit-btn:hover {
+            background-color: #45a049;
+        }
+        #bonus-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>AUTISM TEST</h1>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. What is 2 + 2?</p>
+                <div class="answer">
+                    <input type="radio" id="q1a1" name="q1" value="4" required>
+                    <label for="q1a1">Uhhhhhhhhhh (spitting noises)</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>2. What is the capital of France?</p>
+                <div class="answer">
+                    <input type="radio" id="q2a1" name="q2" value="Paris" required>
+                    <label for="q2a1">Duhhhhhh</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>3. What color is the sky on a clear day?</p>
+                <div class="answer">
+                    <input type="radio" id="q3a1" name="q3" value="Blue" required>
+                    <label for="q3a1">Plurples</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>4. How many continents are there?</p>
+                <div class="answer">
+                    <input type="radio" id="q4a1" name="q4" value="7" required>
+                    <label for="q4a1">I have autism</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>5. What is the boiling point of water?</p>
+                <div class="answer">
+                    <input type="radio" id="q5a1" name="q5" value="100°C" required>
+                    <label for="q5a1">Duhhhh°C</label>
+                </div>
+            </div>
+            <button type="button" id="submit-btn" onclick="showBonusMessage()">Submit</button>
+        </form>
+        <div id="bonus-message">Congratulations! You have autism!</div>
+    </div>
+
+    <script>
+        function showBonusMessage() {
+            document.getElementById('bonus-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
